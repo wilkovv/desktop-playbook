@@ -2,11 +2,13 @@
 - hosts: all
 
   tasks:
+    
     - name: Update installed dnf packages
       become: true
       yum:
         name: '*'
         state: latest
+    
     - name: Install software
       become: true
       yum:
@@ -28,14 +30,31 @@
           - wl-clipboard
           - gdm
           - locate
+          - flatpak
+          - iperf3
         state: present
+    
     - name: Enable gdm
       become: true
       service:
         name: gdm
         enabled: yes
+    
     # To be replaced with proper ansible module
+    
     - name: Enable graphical target
       become: true
       command: systemctl set-default graphical.target
+    
+    - name: Add the flathub flatpak repository remote to the user installation
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+        method: user
 
+    - name: Install the spotify flatpak
+      community.general.flatpak:
+        name:  com.github.marktext.marktext
+        state: present
+        method: user
