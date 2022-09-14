@@ -26,5 +26,11 @@
           - pavucontrol
           - NetworkManager-tui
           - wl-clipboard
+          - gdm
         state: present
+      - name: Enable gdm
+        become: true
+        service:
+          name: gdm
+          enabled: yes
 
