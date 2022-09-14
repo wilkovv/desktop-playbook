@@ -2,7 +2,29 @@
 - hosts: all
 
   tasks:
-    - name: Update DNF packages
+    - name: Update installed dnf packages
+      become: true
       yum:
-        name: *
+        name: '*'
         state: latest
+    - name: Install software
+      become: true
+      yum:
+        name:
+          - firefox
+          - sway
+          - waybar
+          - fontawesome-fonts
+          - dunst
+          - neofetch
+          - vim
+          - alacritty
+          - exa
+          - zsh
+          - grim
+          - rofi
+          - pavucontrol
+          - NetworkManager-tui
+          - wl-clipboard
+        state: present
+
