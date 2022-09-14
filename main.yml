@@ -27,10 +27,15 @@
           - NetworkManager-tui
           - wl-clipboard
           - gdm
+          - locate
         state: present
-      - name: Enable gdm
-        become: true
-        service:
-          name: gdm
-          enabled: yes
+    - name: Enable gdm
+      become: true
+      service:
+        name: gdm
+        enabled: yes
+    # To be replaced with proper ansible module
+    - name: Enable graphical target
+      become: true
+      command: systemctl set-default graphical.target
 
