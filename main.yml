@@ -1,6 +1,7 @@
 ---
 - hosts: all
 
+  vars_files: vars/main.yml
   tasks:
     
     - name: Update installed dnf packages
@@ -28,10 +29,12 @@
           - pavucontrol
           - NetworkManager-tui
           - wl-clipboard
+          - obs-studio
           - gdm
           - locate
           - flatpak
           - iperf3
+          - lutris
         state: present
     
     - name: Enable gdm
@@ -53,8 +56,12 @@
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
         method: user
 
-    - name: Install the spotify flatpak
+    - name: Install flatpaks
       community.general.flatpak:
-        name:  com.github.marktext.marktext
+        name:  
+        - com.github.marktext.marktext
+        - com.visualstudio.code
+        - com.spotify.Client
+        - com.discordapp.Discord
         state: present
         method: user
