@@ -1,0 +1,38 @@
+---
+dotfile_dirs:
+- '~/Pictures/Wallpapers'
+- '~/.local/share/fonts'
+- '~/.config/alacritty'
+- '~/.config/dunst'
+- '~/.config/sway'
+- '~/.config/waybar'
+- '~/.config/rofi/themes'
+- '~/.config/zsh'
+
+dotfile_path:
+- ['~/dotfiles/.p10k.zsh','~/.p10k.zsh']
+- ['~/dotfiles/.zshrc','~/.zshrc']
+- ['~/dotfiles/.config/alacritty/alacritty.yml','~/.config/alacritty/alacritty.yml']
+- ['~/dotfiles/.config/dunst/dunstrc','~/.config/dunst/dunstrc']
+- ['~/dotfiles/.config/sway/import-gsettings','~/.config/sway/import-gsettings']
+- ['~/dotfiles/.config/sway/printscreen.sh','~/.config/sway/printscreen.sh']
+- ['~/dotfiles/.config/sway/config','~/.config/sway/config']
+- ['~/dotfiles/.config/waybar/style.css','~/.config/waybar/style.css']
+- ['~/dotfiles/.config/waybar/config','~/.config/waybar/config']
+- ['~/dotfiles/.config/rofi/config.rasi','~/.config/rofi/config.rasi']
+- ['~/dotfiles/.config/rofi/themes/gruvbox-blue.rasi',"{{ '~/.config/rofi/themes/gruvbox-blue.rasi' if ansible_facts['distribution'] != 'Debian' else '~/.config/rofi/gruvbox-blue.rasi'}}"]
+- ['~/dotfiles/.config/rofi/themes/skeuos-teal.rasi',"{{ '~/.config/rofi/themes/skeuos-teal.rasi' if ansible_facts['distribution'] != 'Debian' else '~/.config/rofi/skeuos-teal.rasi'}}"]
+
+my_var: "{{ 'foo' if my_condition}}"
+
+
+MesloLGS_links:
+- 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf'
+- 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf'
+- 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf'
+- 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf'
+
+zsh_links:
+- 'https://github.com/romkatv/powerlevel10k' 
+- 'https://github.com/zsh-users/zsh-autosuggestions'
+- 'https://github.com/zsh-users/zsh-syntax-highlighting'

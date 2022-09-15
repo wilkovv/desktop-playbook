@@ -1,0 +1,31 @@
+---
+native_packages:
+  - firefox-esr
+  - sway
+ # - swaylock
+  - waybar
+  - fonts-font-awesome
+  - dunst
+  - neofetch
+  - vim
+#  - alacritty
+  - exa
+  - zsh
+  - grim
+  - rofi
+  - pavucontrol
+  - network-manager
+  - wl-clipboard
+  - obs-studio
+  - gdm3
+  - locate
+  - flatpak
+  - iperf3
+  - git 
+#  - lutris
+
+flatpak_packages:
+  - com.github.marktext.marktext
+  - com.visualstudio.code
+  - com.spotify.Client
+  - com.discordapp.Discord

@@ -1,40 +1,29 @@
 ---
 - hosts: all
 
-  vars_files: vars/main.yml
+  # Used in local testing
+  vars_files:
+    - vars/passwd.yml
+    - vars/file_paths.yml
+
+  pre_tasks:
+    - name: Load variables.
+      include_vars: "{{ item }}"
+      with_first_found:
+      - "vars/{{ ansible_facts['distribution'] }}_packages.yml"
+
   tasks:
     
-    - name: Update installed dnf packages
+    - name: Update installed packages
       become: true
-      yum:
+      package:
         name: '*'
         state: latest
     
     - name: Install software
       become: true
-      yum:
-        name:
-          - firefox
-          - sway
-          - waybar
-          - fontawesome-fonts
-          - dunst
-          - neofetch
-          - vim
-          - alacritty
-          - exa
-          - zsh
-          - grim
-          - rofi
-          - pavucontrol
-          - NetworkManager-tui
-          - wl-clipboard
-          - obs-studio
-          - gdm
-          - locate
-          - flatpak
-          - iperf3
-          - lutris
+      package:
+        name: "{{ native_packages }}"
         state: present
     
     - name: Enable gdm
@@ -47,7 +36,9 @@
     
     - name: Enable graphical target
       become: true
-      command: systemctl set-default graphical.target
+      shell: systemctl set-default graphical.target
+      register: out
+      changed_when: out.stdout != ""
     
     - name: Add the flathub flatpak repository remote to the user installation
       community.general.flatpak_remote:
@@ -58,10 +49,75 @@
 
     - name: Install flatpaks
       community.general.flatpak:
-        name:  
-        - com.github.marktext.marktext
-        - com.visualstudio.code
-        - com.spotify.Client
-        - com.discordapp.Discord
+        name:  "{{ flatpak_packages }}"
         state: present
         method: user
+
+    - name: Install "Alacritty" Rust package
+      community.general.cargo:
+        name: alacritty
+      when: ansible_facts['distribution'] == 'Ubuntu'
+
+    - name: Download dotfiles repo
+      git: 
+        repo: 'https://github.com/wilkovv/dotfiles'
+        dest: '~/dotfiles'
+
+    - name: Create directories for dotfiles
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      loop: "{{ dotfile_dirs }}"
+
+    - name: Create symlinks
+      ansible.builtin.file:
+        src: "{{ item[0] }}"
+        dest: "{{ item[1] }}"
+        state: link
+      loop: "{{ dotfile_path }}"
+    
+    - name: Install zsh extensions
+      git: 
+        repo: 'https://github.com/romkatv/powerlevel10k'
+        dest: '~/.config/zsh/powerlevel10k'
+
+    - name: Install zsh extensions
+      git: 
+        repo: 'https://github.com/zsh-users/zsh-autosuggestions'
+        dest: '~/.config/zsh/zsh-autosuggestions'
+    
+    - name: Install zsh extensions
+      git: 
+        repo: 'https://github.com/zsh-users/zsh-syntax-highlighting'
+        dest: '~/.config/zsh/zsh-syntax-highlighting-master'
+
+    - name: Set zsh as default shell
+      become: true
+      ansible.builtin.user:
+        shell: '/bin/zsh'
+        name: "{{ ansible_user }}"
+
+    - name: Copy default sway wallpaper
+      ansible.builtin.copy:
+        src: '/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png'
+        dest: '~/Pictures/Wallpapers/Sway-Wallpaper.png'
+        remote_src: yes
+
+    - name: Setup fonts
+      ansible.builtin.get_url:
+        url: "{{ item }}"
+        dest: '~/.local/share/fonts/'
+      loop: "{{ MesloLGS_links }}"
+    
+    - name: Get rofi power menu
+      git: 
+        repo: 'https://github.com/jluttine/rofi-power-menu'
+        dest: '~/.config/rofi-power-menu'
+
+    - name: Setup rofi power menu
+      become: true
+      ansible.builtin.copy:
+        src: "/home/{{ ansible_user }}/.config/rofi-power-menu/rofi-power-menu"
+        dest: '/usr/bin/rofi-power-menu'
+        remote_src: yes
+        mode: '755'

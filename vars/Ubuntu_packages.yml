@@ -1,0 +1,40 @@
+---
+native_packages:
+  - sway
+  - swaylock
+  - waybar
+  - fonts-font-awesome
+  - dunst
+  - neofetch
+  - vim
+#  - alacritty
+  - exa
+  - zsh
+  - grim
+  - rofi
+  - pavucontrol
+  - network-manager
+  - wl-clipboard
+  - obs-studio
+  - gdm3
+  - locate
+  - flatpak
+  - iperf3
+  - lutris
+  - git
+  # For alacritty ...
+  - cmake
+  - pkg-config
+  - libfreetype6-dev
+  - libfontconfig1-dev
+  - libxcb-xfixes0-dev
+  - libxkbcommon-dev
+  - python3
+  - cargo
+
+flatpak_packages:
+  - com.github.marktext.marktext
+  - com.visualstudio.code
+  - com.spotify.Client
+  - com.discordapp.Discord
+  - org.mozilla.firefox
