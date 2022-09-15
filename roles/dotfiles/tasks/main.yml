@@ -16,9 +16,3 @@
     dest: "{{ item[1] }}"
     state: link
   loop: "{{ dotfile_path }}"
-
-- name: Copy default sway wallpaper
-  ansible.builtin.copy:
-    src: '/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png'
-    dest: '~/Pictures/Wallpapers/Sway-Wallpaper.png'
-    remote_src: yes

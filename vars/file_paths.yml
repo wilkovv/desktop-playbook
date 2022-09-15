@@ -8,15 +8,18 @@ dotfile_dirs:
 - '~/.config/waybar'
 - '~/.config/rofi/themes'
 - '~/.config/zsh'
+- '~/.config/foot'
 
 dotfile_path:
 - ['~/dotfiles/.p10k.zsh','~/.p10k.zsh']
 - ['~/dotfiles/.zshrc','~/.zshrc']
 - ['~/dotfiles/.config/alacritty/alacritty.yml','~/.config/alacritty/alacritty.yml']
+- ['~/dotfiles/.config/foot/foot.ini','~/.config/foot/foot.ini']
 - ['~/dotfiles/.config/dunst/dunstrc','~/.config/dunst/dunstrc']
 - ['~/dotfiles/.config/sway/import-gsettings','~/.config/sway/import-gsettings']
 - ['~/dotfiles/.config/sway/printscreen.sh','~/.config/sway/printscreen.sh']
 - ['~/dotfiles/.config/sway/config','~/.config/sway/config']
+- ['~/dotfiles/Pictures/Wallpapers/7.jpg','~/Pictures/Wallpapers/Sway-Wallpaper.png']
 - ['~/dotfiles/.config/waybar/style.css','~/.config/waybar/style.css']
 - ['~/dotfiles/.config/waybar/config','~/.config/waybar/config']
 - ['~/dotfiles/.config/rofi/config.rasi','~/.config/rofi/config.rasi']

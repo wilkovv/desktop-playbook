@@ -11,6 +11,7 @@
       include_vars: "{{ item }}"
       with_first_found:
       - "vars/packages/{{ ansible_facts['distribution'] }}_packages.yml"
+      tags: ['always']
   
   roles:
   - role: packages
