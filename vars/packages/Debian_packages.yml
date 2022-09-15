@@ -1,0 +1,33 @@
+---
+sway_packages:
+  - dunst
+  - gdm3
+  - grim
+  - pavucontrol
+  - rofi
+  - sway
+  - waybar
+  - wl-clipboard
+
+native_packages:
+  - exa
+  - firefox-esr
+  - flatpak
+  - fonts-font-awesome
+  # Can't get alacritty to install on Debian in convenient way
+  - foot
+  - git 
+  - iperf3
+  - locate
+  - neofetch
+  - network-manager
+  - obs-studio
+  - vim
+# - lutris
+# - swaylock
+
+flatpak_packages:
+  - com.discordapp.Discord
+  - com.github.marktext.marktext
+  - com.spotify.Client
+  - com.visualstudio.code

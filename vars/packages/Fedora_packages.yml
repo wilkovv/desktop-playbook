@@ -1,0 +1,33 @@
+---
+sway_packages:
+  - dunst
+  - gdm
+  - grim
+  - pavucontrol
+  - rofi
+  - sway
+  - swaylock
+  - waybar
+  - wl-clipboard
+
+native_packages:
+  - alacritty
+  - btop
+  - exa
+  - firefox
+  - flatpak
+  - fontawesome-fonts
+  - git
+  - iperf3
+  - locate
+  - lutris
+  - neofetch
+  - NetworkManager-tui
+  - obs-studio
+  - vim
+
+flatpak_packages:
+  - com.discordapp.Discord
+  - com.github.marktext.marktext
+  - com.spotify.Client
+  - com.visualstudio.code

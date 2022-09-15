@@ -1,0 +1,32 @@
+---
+- name: Install sway packages
+  become: true
+  package:
+    name: "{{ sway_packages }}"
+    state: present
+
+# To be replaced with proper ansible module
+- name: Enable graphical target
+  become: true
+  shell: systemctl set-default graphical.target
+  register: out
+  changed_when: out.stdout != ""
+
+- name: Enable gdm
+  become: true
+  service:
+    name: gdm
+    enabled: yes
+
+- name: Download rofi-power-menu
+  git: 
+    repo: 'https://github.com/jluttine/rofi-power-menu'
+    dest: '~/.config/rofi-power-menu'
+
+- name: Add rofi-power-menu to /usr/bin
+  become: true
+  ansible.builtin.copy:
+    src: "/home/{{ ansible_user }}/.config/rofi-power-menu/rofi-power-menu"
+    dest: '/usr/bin/rofi-power-menu'
+    remote_src: yes
+    mode: '755'

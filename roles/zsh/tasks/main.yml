@@ -1,0 +1,43 @@
+---
+- name: Install zsh
+  become: true
+  package: 
+    name: zsh
+    state: present
+
+- name: Create zsh config directory
+  ansible.builtin.file:
+    path: "~/.config/zsh"
+    state: directory
+
+- name: Install powerlevel10k
+  git: 
+    repo: 'https://github.com/romkatv/powerlevel10k'
+    dest: '~/.config/zsh/powerlevel10k'
+
+- name: Ensure fonts folder exists
+  ansible.builtin.file:
+    path: "~/.local/share/fonts"
+    state: directory
+
+- name: Get fonts for powerlevel10k
+  ansible.builtin.get_url:
+    url: "{{ item }}"
+    dest: '~/.local/share/fonts/'
+  loop: "{{ zsh_MesloLGS_links }}"
+
+- name: Install autosuggestions
+  git: 
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions'
+    dest: '~/.config/zsh/zsh-autosuggestions'
+
+- name: Install syntax highlighting
+  git: 
+    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting'
+    dest: '~/.config/zsh/zsh-syntax-highlighting-master'
+
+- name: Set zsh as default shell
+  become: true
+  ansible.builtin.user:
+    shell: '/bin/zsh'
+    name: "{{ ansible_user }}"

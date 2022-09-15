@@ -1,0 +1,24 @@
+---
+- name: Download dotfiles repo
+  git: 
+    repo: 'https://github.com/wilkovv/dotfiles'
+    dest: '~/dotfiles'
+
+- name: Create directories for dotfiles
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop: "{{ dotfile_dirs }}"
+
+- name: Create symlinks
+  ansible.builtin.file:
+    src: "{{ item[0] }}"
+    dest: "{{ item[1] }}"
+    state: link
+  loop: "{{ dotfile_path }}"
+
+- name: Copy default sway wallpaper
+  ansible.builtin.copy:
+    src: '/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png'
+    dest: '~/Pictures/Wallpapers/Sway-Wallpaper.png'
+    remote_src: yes
