@@ -10,6 +10,9 @@ dotfile_dirs:
 - '~/.config/zsh'
 - '~/.config/foot'
 
+# Is there any better way to achieve this?
+- sway_include: "{{ '~/dotfiles/.config/sway/vm-settings' if ansible_facts['virtualization_role'] == 'guest' else '~/dotfiles/.config/sway/fedora-settings' if ansible_facts['distribution'] == 'Fedora' }}"
+
 dotfile_path:
 - ['~/dotfiles/.p10k.zsh','~/.p10k.zsh']
 - ['~/dotfiles/.zshrc','~/.zshrc']
@@ -19,6 +22,7 @@ dotfile_path:
 - ['~/dotfiles/.config/sway/import-gsettings','~/.config/sway/import-gsettings']
 - ['~/dotfiles/.config/sway/printscreen.sh','~/.config/sway/printscreen.sh']
 - ['~/dotfiles/.config/sway/config','~/.config/sway/config']
+- ["{{sway_include}}", "~/.config/sway/chosen-settings"]
 - ['~/dotfiles/Pictures/Wallpapers/7.jpg','~/Pictures/Wallpapers/Sway-Wallpaper.png']
 - ['~/dotfiles/.config/waybar/style.css','~/.config/waybar/style.css']
 - ['~/dotfiles/.config/waybar/config','~/.config/waybar/config']
