@@ -26,11 +26,5 @@ dotfile_path:
 - ['~/dotfiles/.config/rofi/themes/gruvbox-blue.rasi',"{{ '~/.config/rofi/themes/gruvbox-blue.rasi' if ansible_facts['distribution'] != 'Debian' else '~/.config/rofi/gruvbox-blue.rasi'}}"]
 - ['~/dotfiles/.config/rofi/themes/skeuos-teal.rasi',"{{ '~/.config/rofi/themes/skeuos-teal.rasi' if ansible_facts['distribution'] != 'Debian' else '~/.config/rofi/skeuos-teal.rasi'}}"]
 
-zsh_MesloLGS_links:
-- 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf'
-- 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf'
-- 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf'
-- 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf'
-
 dotfiles_repo_url: 'https://github.com/wilkovv/dotfiles'
 dotfiles_repo_local_dir: '~/dotfiles'

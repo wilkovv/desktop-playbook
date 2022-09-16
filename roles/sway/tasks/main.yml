@@ -8,7 +8,7 @@
 # To be replaced with proper ansible module
 - name: Enable graphical target
   become: true
-  shell: systemctl set-default graphical.target
+  command: systemctl set-default graphical.target
   register: out
   changed_when: out.stdout != ""
 

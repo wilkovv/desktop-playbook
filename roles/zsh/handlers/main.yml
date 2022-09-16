@@ -9,5 +9,5 @@
   ansible.builtin.get_url:
     url: "{{ item }}"
     dest: '~/.local/share/fonts/'
-  loop: "{{ zsh_MesloLGS_links }}"
+  loop: "{{ p10k_fonts }}"
   listen: "Setup-p10k-fonts"
