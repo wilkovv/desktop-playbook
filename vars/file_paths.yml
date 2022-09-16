@@ -31,3 +31,6 @@ zsh_MesloLGS_links:
 - 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf'
 - 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf'
 - 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf'
+
+dotfiles_repo_url: 'https://github.com/wilkovv/dotfiles'
+dotfiles_repo_local_dir: '~/dotfiles'

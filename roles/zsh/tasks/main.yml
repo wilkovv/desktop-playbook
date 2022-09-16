@@ -10,28 +10,21 @@
     path: "~/.config/zsh"
     state: directory
 
-- name: Install powerlevel10k
+- name: Clone powerlevel10k repo
   git: 
     repo: 'https://github.com/romkatv/powerlevel10k'
     dest: '~/.config/zsh/powerlevel10k'
+  notify: Setup-p10k-fonts
 
-- name: Ensure fonts folder exists
-  ansible.builtin.file:
-    path: "~/.local/share/fonts"
-    state: directory
+- name: Flush handlers
+  meta: flush_handlers
 
-- name: Get fonts for powerlevel10k
-  ansible.builtin.get_url:
-    url: "{{ item }}"
-    dest: '~/.local/share/fonts/'
-  loop: "{{ zsh_MesloLGS_links }}"
-
-- name: Install autosuggestions
+- name: Clone zsh-autosuggestions repo
   git: 
     repo: 'https://github.com/zsh-users/zsh-autosuggestions'
     dest: '~/.config/zsh/zsh-autosuggestions'
 
-- name: Install syntax highlighting
+- name: Clone zsh-syntax-highlighting repo
   git: 
     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting'
     dest: '~/.config/zsh/zsh-syntax-highlighting-master'

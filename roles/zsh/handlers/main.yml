@@ -1,0 +1,13 @@
+---
+- name: Ensure fonts folder exists
+  ansible.builtin.file:
+    path: "~/.local/share/fonts"
+    state: directory
+  listen: "Setup-p10k-fonts"
+
+- name: Get fonts for powerlevel10k
+  ansible.builtin.get_url:
+    url: "{{ item }}"
+    dest: '~/.local/share/fonts/'
+  loop: "{{ zsh_MesloLGS_links }}"
+  listen: "Setup-p10k-fonts"

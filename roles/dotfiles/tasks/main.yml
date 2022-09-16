@@ -1,8 +1,8 @@
 ---
-- name: Download dotfiles repo
+- name: Clone dotfiles repo
   git: 
-    repo: 'https://github.com/wilkovv/dotfiles'
-    dest: '~/dotfiles'
+    repo: "{{ dotfiles_repo_url }}"
+    dest: "{{ dotfiles_repo_local_dir }}"
 
 - name: Create directories for dotfiles
   ansible.builtin.file:

@@ -5,6 +5,7 @@ sway_packages:
   - grim
   - pavucontrol
   - rofi
+  - slurp
   - sway
   - swaylock
   - waybar

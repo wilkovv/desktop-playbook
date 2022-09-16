@@ -5,6 +5,7 @@ sway_packages:
   - grim
   - pavucontrol
   - rofi
+  - slurp
   - sway
   - waybar
   - wl-clipboard
